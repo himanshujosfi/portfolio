@@ -24,7 +24,7 @@ export const Navbar = () => {
     })
     return (
 
-        <nav className={`min-h-screen fixed z-40 transition-all duration-300 ${isScrolled ? "py-3 bg-background/30 backdrop-blur-md shadow-xs" : "py-5"}`}>
+        <nav className={`max-h-screen fixed z-40 transition-all duration-300 ${isScrolled ? "py-3 bg-background/30 backdrop-blur-md shadow-xs" : "py-5"}`}>
             <div className="flex items-center justify-between w-full gap-8">
                 {/* "logo" */}
                 <a href="#main" className="text-xl font-bold">
