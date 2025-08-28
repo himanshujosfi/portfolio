@@ -3,6 +3,7 @@ import { Navbar } from "../Components/Navbar/Navbar"
 import { About } from "./About"
 import { Contact } from "./Context"
 import { Home } from "./Home"
+import { Project } from "./Project"
 import { Skill } from "./Skill"
 // import { ToogleTheme } from "../Components/ThemeToggle/TheameToogle"
 
@@ -19,6 +20,7 @@ export const Dashboard = () => {
                     <About />
                     <Skill />
                     <Contact />
+                    <Project />
                 </main>
             </div>
         </div>
