@@ -31,7 +31,7 @@ export const Project = () => {
                     My Projects
                 </h2>
 
-                {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {projectData.map((item) => (
                         <a
                             href={item.link}
@@ -50,7 +50,7 @@ export const Project = () => {
                             <p className="text-muted-foreground">{item.description}</p>
                         </a>
                     ))}
-                </div> */}
+                </div>
             </div>
         </section>
     );

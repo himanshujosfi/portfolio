@@ -34,7 +34,7 @@ export const About = () => {
                             Contact Me
                         </a>
                         <a
-                            href="/vite.svg"
+                            href="/resume.pdf"
                             download
                             className="px-6 py-3 rounded-xl border border-primary text-primary shadow hover:bg-primary hover:text-primary-foreground transition"
                         >

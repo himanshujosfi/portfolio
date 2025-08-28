@@ -1,17 +1,33 @@
 import { Mail, Linkedin, Github } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser"
 
 export const Contact = () => {
+    const form = useRef();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        message: ""
+        message: "",
+        subject: ""
     })
 
+
     const handleForm = (e) => {
-        e.preventDefault(); // prevent page reload
-        console.log("Form data:", formData);
-    }
+        e.preventDefault();
+
+        emailjs.sendForm('service_2p0hdcq', 'template_hd99x4s', form.current, '41ZS_4pU_QyJoKSrm')
+            .then((result) => {
+                console.log('Email successfully sent!', result.text);
+                setFormData("")
+            }, (error) => {
+                console.log('Failed to send email.', error.text);
+            });
+
+        // Optionally clear form after sending
+        e.target.reset();
+    };
+
+
     return (
         <section id="contact" className="bg-background px-6 py-16">
             <div className="max-w-5xl mx-auto space-y-12">
@@ -26,12 +42,13 @@ export const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     {/* Left: Contact Form */}
-                    <form className="space-y-4 bg-card border border-border shadow-md p-6 rounded-xl" onSubmit={handleForm}>
+                    <form ref={form} className="space-y-4 bg-card border border-border shadow-md p-6 rounded-xl" onSubmit={handleForm}>
                         <div>
                             <label className="block text-sm font-medium text-foreground mb-1">Name</label>
                             <input
                                 type="text"
                                 placeholder="Joshi"
+                                name="user_name"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
 
@@ -43,17 +60,29 @@ export const Contact = () => {
                             <label className="block text-sm font-medium text-foreground mb-1">Email</label>
                             <input
                                 type="email"
+                                name="user_email"
                                 value={formData.email}
                                 onChange={(e) => { setFormData({ ...formData, email: e.target.value }) }}
                                 placeholder="joshi@gamil.com"
                                 className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary outline-none"
                             />
                         </div>
-
+                        <div>
+                            <label className="block text-sm font-medium text-foreground mb-1">Subject</label>
+                            <input
+                                type="text"
+                                name="subject"
+                                value={formData.subject}
+                                onChange={(e) => { setFormData({ ...formData, subject: e.target.value }) }}
+                                placeholder="Connect"
+                                className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary outline-none"
+                            />
+                        </div>
                         <div>
                             <label className="block text-sm font-medium text-foreground mb-1">Message</label>
                             <textarea
                                 rows={4}
+                                name="message"
                                 placeholder="Write your message..."
                                 value={formData.message}
                                 onChange={(e) => { setFormData({ ...formData, message: e.target.value }) }}

@@ -24,7 +24,7 @@ export const Navbar = () => {
     })
     return (
 
-        <nav className={`max-h-screen fixed z-40 transition-all duration-300 ${isScrolled ? "py-3 bg-background/30 backdrop-blur-md shadow-xs" : "py-5"}`}>
+        <nav className={`p-4 w-full fixed z-40 transition-all duration-300 ${isScrolled ? "py-3 bg-background/30 backdrop-blur-md shadow-xs" : "py-5"}`}>
             <div className="flex items-center justify-between w-full gap-8">
                 {/* "logo" */}
                 <a href="#main" className="text-xl font-bold">
@@ -33,7 +33,7 @@ export const Navbar = () => {
                     </span>
                 </a>
 
-                <div className="flex gap-4 hidden md:flex ml-8">
+                <div className="flex gap-4 hidden md:flex ">
                     {navItems?.map((item, index) => (
                         <a
                             key={index}
@@ -43,16 +43,44 @@ export const Navbar = () => {
                             {item.name}
                         </a>
                     ))}
-                    <ToogleTheme />
+                    <div className="ml-8 text-center mt-8" title="Theme">
+                        <ToogleTheme />
+                    </div>
                 </div>
 
-                {/* Mobile menu toggle */}
-                <button
-                    className="md:hidden text-foreground"
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                <>
+                    {/* Mobile menu toggle button */}
+                    <button
+                        className="md:hidden text-foreground  rounded-md hover:bg-primary/20 transition"
+                        onClick={() => setIsOpen(!isOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+
+                    <div
+                        className={`absolute top-8  right-8 z-50  shadow-lg rounded-b-xl px-2 py-2 space-y-4 transition-all duration-300 ease-in-out ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+                            } `}
+                    >
+                        {navItems?.map((item, index) => (
+                            <a
+                                key={index}
+                                href={item.href}
+                                className="block text-foreground/90 hover:text-primary font-medium transition-colors duration-300"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {item.name}
+                            </a>
+
+                        ))}
+                    </div>
+                    {/* <div className="absolute top-8  right-8">
+                        <ToogleTheme />
+                    </div> */}
+                </>
+
+
+
             </div>
 
         </nav >
