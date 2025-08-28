@@ -1,6 +1,17 @@
 import { Mail, Linkedin, Github } from "lucide-react";
+import { useState } from "react";
 
 export const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    })
+
+    const handleForm = (e) => {
+        e.preventDefault(); // prevent page reload
+        console.log("Form data:", formData);
+    }
     return (
         <section id="contact" className="bg-background px-6 py-16">
             <div className="max-w-5xl mx-auto space-y-12">
@@ -15,12 +26,15 @@ export const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     {/* Left: Contact Form */}
-                    <form className="space-y-4 bg-card border border-border shadow-md p-6 rounded-xl">
+                    <form className="space-y-4 bg-card border border-border shadow-md p-6 rounded-xl" onSubmit={handleForm}>
                         <div>
                             <label className="block text-sm font-medium text-foreground mb-1">Name</label>
                             <input
                                 type="text"
-                                placeholder="Your Name"
+                                placeholder="Joshi"
+                                value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+
                                 className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary outline-none"
                             />
                         </div>
@@ -29,7 +43,9 @@ export const Contact = () => {
                             <label className="block text-sm font-medium text-foreground mb-1">Email</label>
                             <input
                                 type="email"
-                                placeholder="your@email.com"
+                                value={formData.email}
+                                onChange={(e) => { setFormData({ ...formData, email: e.target.value }) }}
+                                placeholder="joshi@gamil.com"
                                 className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary outline-none"
                             />
                         </div>
@@ -39,6 +55,8 @@ export const Contact = () => {
                             <textarea
                                 rows={4}
                                 placeholder="Write your message..."
+                                value={formData.message}
+                                onChange={(e) => { setFormData({ ...formData, message: e.target.value }) }}
                                 className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary outline-none"
                             ></textarea>
                         </div>

@@ -9,7 +9,7 @@ import { Skill } from "./Skill"
 
 export const Dashboard = () => {
     return (
-        <div className="m-h-screen bg-background text-foreground overflow-x-hidden">
+        <div className="">
             <div>
                 {/* <ToogleTheme /> */}
                 <Background />
